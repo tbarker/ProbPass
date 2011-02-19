@@ -44,12 +44,13 @@ Usually, ProbPass expects to be used from Spring and has clean Spring integratio
 		</pass:checker>
 	</beans>
 
-<population> elements can be used to load files with extensions of:
- * .wordlist - Standard Unix wordlists
- * .wordcount - [SkullSecurity format](http://www.skullsecurity.org/wiki/index.php/Passwords) counted wordlists
- * .ser - Serialised ProbPass populations.  (See the class GenerateFromWords.)
+&lt;population> elements can be used to load files with extensions of:
 
-Using the <defaultPopulation> or leaving <checker> empty includes the default ProbPass population.  (Based on [The Ultimate Strip Club password leak](http://downloads.skullsecurity.org/passwords/tuscl.txt).)
+ * wordlist - Standard Unix wordlists
+ * wordcount - [SkullSecurity format](http://www.skullsecurity.org/wiki/index.php/Passwords) counted wordlists
+ * ser - Serialised ProbPass populations.  (See the class GenerateFromWords.)
+
+Using the &lt;defaultPopulation> or leaving &lt;checker> empty includes the default ProbPass population.  (Based on [The Ultimate Strip Club password leak](http://downloads.skullsecurity.org/passwords/tuscl.txt).)
 
 The l33t attribute switches the de-133tifying pre-processing.  This treates 'pa455w4d' as 'password'.
 
