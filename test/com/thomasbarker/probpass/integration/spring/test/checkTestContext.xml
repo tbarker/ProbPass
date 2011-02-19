@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans	xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+            http://www.github.com/tbarker/probpass http://www.github.com/tbarker/probpass/schema/probpass.xsd"
+        xmlns:pass="http://www.github.com/tbarker/probpass"
+>
+    <pass:checker id="test" strictness="6" l33t="false">
+	   <pass:population weight="0.05">
+	       <pass:sample>kitten</pass:sample>
+	       <pass:sample>cat</pass:sample>
+	       <pass:sample>mobydick</pass:sample>
+	   </pass:population>
+	   <pass:population weight="0.55" file="test/tuscl.wordcount" />
+       <pass:defaultPopulation weight="0.35" />
+	</pass:checker>
+</beans>

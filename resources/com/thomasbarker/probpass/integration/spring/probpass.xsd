@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns="http://www.github.com/tbarker/probpass"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    targetNamespace="http://www.github.com/tbarker/probpass"
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xsd:import namespace="http://www.springframework.org/schema/beans" />
+
+    <xsd:element name="checker">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="population" maxOccurs="unbounded" minOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="sample" type="xsd:normalizedString" maxOccurs="unbounded" minOccurs="0" />
+                        </xsd:sequence>
+                        <xsd:attribute name="weight" type="xsd:decimal" use="required" />
+                        <xsd:attribute name="file" type="xsd:string" />
+                    </xsd:complexType>
+                </xsd:element>
+                <!-- Default base population -->
+                <xsd:element name="defaultPopulation" maxOccurs="1" minOccurs="0" />
+            </xsd:sequence>
+            <xsd:attribute name="strictness" type="xsd:integer" default="7" />
+            <xsd:attribute name="l33t" type="xsd:boolean" default="true" />
+            <xsd:attribute name="id" type="xsd:string" use="required" />
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

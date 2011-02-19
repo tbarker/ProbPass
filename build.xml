@@ -1,0 +1,69 @@
+<project name="probpass" basedir="." default="dist">
+
+	<path id="build.path">
+		<fileset dir="${basedir}/buildtools" includes="*.jar" />
+	</path>
+
+	<path id="classpath.base">
+		<pathelement path="${basedir}/build/classes/" />
+	</path>
+
+	<path id="classpath.">
+		<pathelement path="${basedir}/build/classes/" />
+	</path>
+
+	<path id="classpath.test">
+		<pathelement path="${basedir}/build/testclasses/" />
+		<pathelement path="${basedir}/resources/" />
+		<path refid="classpath.base" />
+		<path refid="build.path" />
+	</path>
+
+	<target name="clean">
+		<delete dir="${basedir}/build/classes" />
+		<delete dir="${basedir}/build/testclasses" />
+		<delete dir="${basedir}/dist" />
+	</target>
+	
+	<target name="compile">
+		<mkdir dir="${basedir}/build/classes" />
+		<copy todir="${basedir}/build/classes">
+			<fileset dir="${basedir}/resources">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<javac srcdir="${basedir}/src" destdir="${basedir}/build/classes" classpathref="build.path" source="1.5" includeantruntime="false" />
+	</target>
+
+	<target name="compiletests" depends="compile">
+		<mkdir dir="${basedir}/build/testclasses"/>
+		<copy todir="${basedir}/build/testclasses">
+			<fileset dir="${basedir}/test">
+				<include name="**/*.xml" />
+			</fileset>
+		</copy>
+		<javac srcdir="${basedir}/test" destdir="${basedir}/build/testclasses" includeantruntime="false" classpathref="classpath.test" />
+	</target>
+
+	<target name="test" depends="compiletests">
+		<junit haltonfailure="yes">
+			<classpath refid="classpath.test" />
+			<formatter type="brief" usefile="false" />
+			<batchtest>
+				<fileset dir="${basedir}/build/testclasses" />
+			</batchtest>
+		</junit>
+	</target>
+
+	<target name="dist" depends="compile">
+		<mkdir dir="${basedir}/dist" />
+		<jar jarfile="dist/probpass.jar">
+	        <fileset dir="build/classes"/>
+		    <manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+		    	<attribute name="Main-Class" value="com.thomasbarker.probpass.run.Main" />
+		    </manifest>
+		</jar>
+	</target>
+
+</project>
